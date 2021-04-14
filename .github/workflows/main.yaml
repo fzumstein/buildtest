@@ -26,9 +26,9 @@ jobs:
         run: |
           python -m pip install -r $GITHUB_WORKSPACE/requirements.txt
           python -c "import xlwings;print(xlwings.__path__)"
-          tar -cvzf $GITHUB_WORKSPACE/requirements.tar.gz $pythonLocation/lib/python3.8/site-packages
+          tar -cvzf requirements.tar.gz $pythonLocation/lib/python3.8/site-packages
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: requirements
-          path: $GITHUB_WORKSPACE/requirements.tar.gz
+          path: requirements.tar.gz
