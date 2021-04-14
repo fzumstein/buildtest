@@ -16,6 +16,7 @@ jobs:
     name: Test installation
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -23,7 +24,5 @@ jobs:
           architecture: 'x64'
       - name: Install Python dependencies
         run: |
-          pwd
-          ls -l
-          # python -m pip install -r $GITHUB_WORKSPACE/requirements.txt
-          # python -c "import xlwings;print(xlwings.__path__)"
+          python -m pip install -r $GITHUB_WORKSPACE/requirements.txt
+          python -c "import xlwings;print(xlwings.__path__)"
