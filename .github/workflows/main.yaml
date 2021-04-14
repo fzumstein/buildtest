@@ -1,0 +1,27 @@
+name: Build Pipeline
+
+on:
+  # Run on all pushed commits and when a new release is created
+  # Prevents duplicated pipeline runs as a release also pushes a tag
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  release:
+    types:
+      - created
+jobs:
+  test:
+    name: Test installation
+    runs-on: macos-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+      - name: Install Python dependencies
+        run: |
+          python -m pip install requirements.txt
+          python -c "import xlwings;print(xlwings.__path__)"
